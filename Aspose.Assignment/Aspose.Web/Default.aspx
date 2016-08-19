@@ -3,40 +3,38 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+       <h2>Employee salary increments</h2>
+
+       <p id="paraAttach" runat="server"> Use this page to upload employees excel file and then generate and send them increment letters automatically
+           <br />
+            <br />
+           Download the excel sample file from <asp:Hyperlink ID="lnkSampleFile" runat="server" Text="here" NavigateUrl="~/Samples/Employees.xlsx"></asp:Hyperlink>
+           <br /> 
+            <br /> 
+           <asp:FileUpload ID="employeeFile" runat="server" />
+            <asp:RequiredFieldValidator ID="rfvFile" runat="server" ControlToValidate="employeeFile" ErrorMessage="Please attach a file." ForeColor="Red" Display="Dynamic" ValidationGroup="Upload">
+                            </asp:RequiredFieldValidator>
+               <br /> 
+        <asp:Button ID="btnFileUpload" runat="server" CssClass="btn btn-primary btn-lg" Text="Upload" ValidationGroup="Upload" OnClick="btnFileUpload_Click" />
+       </p>
+       
+   
     </div>
 
     <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
+        <div class="col-md-8">
+              <p id="lblMessage" runat="server"></p>
+            <p id="paraVerify" runat="server" visible="false">
+                Please verify the list of employess before sending them increment letters.
+            
+        <asp:GridView ID="gvEmployees" runat="server" CssClass="table table-bordered">
+
+        </asp:GridView>
+
+            <asp:Button ID="btnSend" runat="server" Text="Send Increment Letters" CssClass="btn btn-primary" OnClick="btnSend_Click" />
+                </p>
         </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
-        </div>
+      
     </div>
 
 </asp:Content>

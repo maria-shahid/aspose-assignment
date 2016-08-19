@@ -36,3 +36,11 @@ input[type="select"] {
         padding: 0;
     }
 }
+
+.navbar-inverse .navbar-brand {
+    color: #FFF;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #FFF;
+}
