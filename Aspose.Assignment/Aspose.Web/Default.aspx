@@ -32,6 +32,7 @@
         </asp:GridView>
 
             <asp:Button ID="btnSend" runat="server" Text="Send Increment Letters" CssClass="btn btn-primary" OnClick="btnSend_Click" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-danger" OnClick="btnCancel_Click" />
                 </p>
         </div>
       

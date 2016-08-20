@@ -37,11 +37,11 @@ namespace Aspose.Web
                 //Check if user attached a file
                 if (employeeFile.HasFile)
                 {
-                    //Validate xlsx extension
-                    if (!employeeFile.FileName.EndsWith(".xlsx"))
+                    //Validate xlsx/xls extension
+                    if (!(employeeFile.FileName.EndsWith(".xlsx") | employeeFile.FileName.EndsWith(".xls")))
                     {
                         //Notify user to attach only xlsx file
-                        lblMessage.InnerText = "ERROR: Only xlsx file type is allowed.";
+                        lblMessage.InnerText = "ERROR: Only xlsx/xls file type is allowed.";
                         lblMessage.Attributes.Add("class", "alert alert-danger");
 
                         //Show upload elements
@@ -51,6 +51,7 @@ namespace Aspose.Web
                         paraVerify.Visible = false;
                         return;
                     }
+            
 
                     // Instantiating a Workbook object
                     // Opening the Excel file through the file stream
@@ -172,8 +173,8 @@ namespace Aspose.Web
                     // Loop through all records in the data source
                     foreach (DataRow row in employeeData.Rows)
                     {
-
-                        if (row["Email"].ToString() != null && row["Email"].ToString() != "")
+                        //Verify the row is not null
+                        if (row["Email"].ToString() != null && row["Email"].ToString() != "" && row["FullName"].ToString() != null && row["FullName"].ToString() != "" && row["Address"].ToString() != null && row["Address"].ToString() != "" && row["Salary"].ToString() != null && row["Salary"].ToString() != "")
                         {
                             // Load email template
                             StreamReader reader = new StreamReader(emailTemplate);
@@ -248,6 +249,19 @@ namespace Aspose.Web
             
             }
       
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+
+            //Hide the verify grid and send button
+            paraVerify.Visible = false;
+
+            //Show upload elements
+            paraAttach.Visible = true;
+
+            //Remove Data from view state
+            ViewState["EmployeeData"] = null;
         }
     }
 }
